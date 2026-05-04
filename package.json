@@ -1,0 +1,44 @@
+{
+  "name": "hodor-guard",
+  "version": "0.1.0",
+  "description": "Security middleware for Node.js — rate limiting, honeypot, risk scoring",
+  "main": "dist/middleware/hodorGuard.js",
+  "types": "dist/middleware/hodorGuard.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node-dev --respawn src/example/server.ts",
+    "example": "ts-node src/example/server.ts",
+    "simulator": "ts-node src/example/attack-simulator.ts"
+  },
+  "keywords": [
+    "security",
+    "middleware",
+    "rate-limit",
+    "honeypot",
+    "express",
+    "nodejs",
+    "redis"
+  ],
+  "author": "Matheus Bastos Pecinalli",
+  "license": "MIT",
+  "dependencies": {
+    "ioredis": "^5.3.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.11.0",
+    "express": "^4.18.2",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.3.3"
+  },
+  "peerDependencies": {
+    "express": ">=4.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
