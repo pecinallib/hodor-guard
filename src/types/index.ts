@@ -11,6 +11,7 @@ export interface HodorConfig {
   blockTtlSeconds?: number;
   honeypotRoutes?: string[];
   logRequests?: boolean;
+  scannerThreshold?: number;
 }
 
 // risk score entry stored in Redis per IP //

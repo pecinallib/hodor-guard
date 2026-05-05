@@ -125,7 +125,7 @@ export async function runDetection(
 
     // scanner detection based on unique routes accessed //
     const uniqueRoutes = await getUniqueRoutes(ip);
-    const scannerResult = detectScanner(uniqueRoutes);
+    const scannerResult = detectScanner(uniqueRoutes, config.scannerThreshold);
     if (scannerResult.detected) {
       applyPenalty(ipData, scannerResult.penalty);
       if (scannerResult.flag) addFlag(ipData, scannerResult.flag);
