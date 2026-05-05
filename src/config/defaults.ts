@@ -25,6 +25,7 @@ export const DEFAULT_CONFIG: Required<HodorConfig> = {
   blockTtlSeconds: 900,
   honeypotRoutes: DEFAULT_HONEYPOT_ROUTES,
   logRequests: true,
+  scannerThreshold: 10,
 };
 
 // risk score penalties per event //
