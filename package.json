@@ -1,14 +1,29 @@
 {
   "name": "hodor-guard",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Security middleware for Node.js — rate limiting, honeypot, risk scoring",
-  "main": "dist/middleware/hodorGuard.js",
-  "types": "dist/middleware/hodorGuard.d.ts",
+  "main": "dist/cjs/middleware/hodorGuard.js",
+  "module": "dist/esm/middleware/hodorGuard.js",
+  "types": "dist/cjs/middleware/hodorGuard.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/middleware/hodorGuard.js",
+      "require": "./dist/cjs/middleware/hodorGuard.js",
+      "types": "./dist/cjs/middleware/hodorGuard.d.ts"
+    },
+    "./router": {
+      "import": "./dist/esm/router/statsRouter.js",
+      "require": "./dist/cjs/router/statsRouter.js",
+      "types": "./dist/cjs/router/statsRouter.d.ts"
+    }
+  },
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "tsc",
+    "build:cjs": "tsc -p tsconfig.cjs.json",
+    "build:esm": "tsc -p tsconfig.esm.json",
+    "build": "rimraf dist && npm run build:cjs && npm run build:esm",
     "dev": "ts-node-dev --respawn src/example/server.ts",
     "example": "ts-node src/example/server.ts",
     "simulator": "ts-node src/example/attack-simulator.ts",
@@ -27,20 +42,19 @@
   "author": "Matheus Bastos Pecinalli",
   "license": "MIT",
   "dependencies": {
-    "dotenv": "^17.4.2",
     "ioredis": "^5.3.2"
   },
   "devDependencies": {
-    "@types/dotenv": "^6.1.1",
     "@types/express": "^4.17.21",
-    "@types/jest": "^30.0.0",
     "@types/node": "^20.11.0",
     "express": "^4.18.2",
-    "jest": "^30.3.0",
-    "ts-jest": "^29.4.9",
+    "rimraf": "^6.0.1",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.0",
+    "@types/jest": "^29.5.0"
   },
   "peerDependencies": {
     "express": ">=4.0.0"
