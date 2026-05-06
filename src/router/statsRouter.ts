@@ -85,7 +85,7 @@ router.get(
 // get logs for a specific ip //
 router.get('/logs/:ip', async (req: Request, res: Response): Promise<void> => {
   try {
-    const { ip } = req.params;
+    const ip = String(req.params.ip);
     const limit = Number(req.query.limit) || 20;
     const logs = await getIpLogs(ip, limit);
 
@@ -98,7 +98,7 @@ router.get('/logs/:ip', async (req: Request, res: Response): Promise<void> => {
 // get risk data for a specific ip //
 router.get('/ip/:ip', async (req: Request, res: Response): Promise<void> => {
   try {
-    const { ip } = req.params;
+    const ip = String(req.params.ip);
     const data = await getIpData(ip);
 
     if (!data) {
@@ -117,7 +117,7 @@ router.delete(
   '/blocked/:ip',
   async (req: Request, res: Response): Promise<void> => {
     try {
-      const { ip } = req.params;
+      const ip = String(req.params.ip);
       await unblockIp(ip);
 
       res.status(200).json({ message: `IP ${ip} has been unblocked` });
