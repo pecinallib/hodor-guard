@@ -2,28 +2,37 @@
   "name": "hodor-guard",
   "version": "0.2.0",
   "description": "Security middleware for Node.js — rate limiting, honeypot, risk scoring",
-  "main": "dist/cjs/middleware/hodorGuard.js",
-  "module": "dist/esm/middleware/hodorGuard.js",
-  "types": "dist/cjs/middleware/hodorGuard.d.ts",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/esm/middleware/hodorGuard.js",
-      "require": "./dist/cjs/middleware/hodorGuard.js",
-      "types": "./dist/cjs/middleware/hodorGuard.d.ts"
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
     },
     "./router": {
-      "import": "./dist/esm/router/statsRouter.js",
-      "require": "./dist/cjs/router/statsRouter.js",
-      "types": "./dist/cjs/router/statsRouter.d.ts"
+      "import": {
+        "types": "./dist/router.d.ts",
+        "default": "./dist/router.js"
+      },
+      "require": {
+        "types": "./dist/router.d.cts",
+        "default": "./dist/router.cjs"
+      }
     }
   },
   "files": [
     "dist"
   ],
   "scripts": {
-    "build:cjs": "tsc -p tsconfig.cjs.json",
-    "build:esm": "tsc -p tsconfig.esm.json",
-    "build": "rimraf dist && npm run build:cjs && npm run build:esm",
+    "build": "tsup",
     "dev": "ts-node-dev --respawn src/example/server.ts",
     "example": "ts-node src/example/server.ts",
     "simulator": "ts-node src/example/attack-simulator.ts",
@@ -45,16 +54,16 @@
     "ioredis": "^5.3.2"
   },
   "devDependencies": {
-    "@types/express": "^4.17.21",
+    "@types/express": "^5.0.6",
+    "@types/jest": "^29.5.0",
     "@types/node": "^20.11.0",
     "express": "^4.18.2",
-    "rimraf": "^6.0.1",
-    "ts-node": "^10.9.2",
-    "ts-node-dev": "^2.0.0",
-    "typescript": "^5.3.3",
     "jest": "^29.7.0",
     "ts-jest": "^29.1.0",
-    "@types/jest": "^29.5.0"
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "tsup": "^8.5.1",
+    "typescript": "^5.3.3"
   },
   "peerDependencies": {
     "express": ">=4.0.0"
